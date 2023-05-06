@@ -12,6 +12,7 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send("Hello World!")
 })
+
 app.use("/database", require("./routes/database.routes"));
 app.use("/article", require("./routes/articles.routes"));
 app.use("/search", require("./routes/search.routes"));

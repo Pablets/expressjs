@@ -1,15 +1,17 @@
 const database = require('../sql/dbConnection');
 
+const db = process.env.MYSQLDATABASE
+
 module.exports = {
     create: (req, res) => {
 
-        database.query(`CREATE DATABASE championpedia`, (err) => {
-            if (err) throw err;
+        // database.query(`CREATE DATABASE ${db}`, (err) => {
+        //     if (err) throw err;
 
-            console.log("Database Created Successfully !");
-        })
+        //     console.log("Database Created Successfully !");
+        // })
 
-        database.query(`USE championpedia`, (error) => {
+        database.query(`USE ${db}`, (error) => {
             if (error) throw error;
 
             console.log("Using Database");
@@ -69,7 +71,7 @@ module.exports = {
             goals int(11) not null,
             debut date not null,
             retire date null,
-            
+
             primary key (id),
             foreign key (category) references categories(id)
         );`, (error) => {
@@ -92,7 +94,7 @@ module.exports = {
             organizer varchar(100) not null,
             champion varchar(100) not null,
             subchampion varchar(100) not null,
-        
+
             primary key (id),
             foreign key (category) references categories(id)
         );`, (error) => {
@@ -115,7 +117,7 @@ module.exports = {
             stadium varchar(100) not null,
             coach varchar(100) not null,
             nickName varchar(100) null,
-            
+
             primary key (id),
             foreign key (category) references categories(id)
         );`, (error) => {
@@ -128,7 +130,7 @@ module.exports = {
             id int(11) not null unique auto_increment,
             thophy_id int(11) not null,
             tag_id int(11) not null,
-            
+
             primary key (id),
             foreign key (tag_id) references tags(id),
             foreign key (thophy_id) references trophies(id)
@@ -142,7 +144,7 @@ module.exports = {
             id int(11) not null unique auto_increment,
             player_id int(11) not null,
             tag_id int(11) not null,
-            
+
             primary key (id),
             foreign key (tag_id) references tags(id),
             foreign key (player_id) references players(id)
@@ -156,7 +158,7 @@ module.exports = {
             id int(11) not null unique auto_increment,
             team_id int(11) not null,
             tag_id int(11) not null,
-            
+
             primary key (id),
             foreign key (tag_id) references tags(id),
             foreign key (team_id) references teams(id)
@@ -170,7 +172,7 @@ module.exports = {
             id int(11) not null unique auto_increment,
             thophy_id int(11) not null,
             image_id int(11) not null,
-            
+
             primary key (id),
             foreign key (image_id) references images(id),
             foreign key (thophy_id) references trophies(id)
@@ -184,7 +186,7 @@ module.exports = {
             id int(11) not null unique auto_increment,
             player_id int(11) not null,
             image_id int(11) not null,
-            
+
             primary key (id),
             foreign key (image_id) references images(id),
             foreign key (player_id) references players(id)
@@ -198,7 +200,7 @@ module.exports = {
             id int(11) not null unique auto_increment,
             team_id int(11) not null,
             image_id int(11) not null,
-            
+
             primary key (id),
             foreign key (image_id) references images(id),
             foreign key (team_id) references teams(id)
