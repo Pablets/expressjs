@@ -19,6 +19,15 @@ const api = express.Router();
 api.get('/hello', (req, res) => {
   res.status(200).send({ message: 'hello world' });
 });
+// app.get('/', (req, res) => {
+//     res.send("Hello World!")
+// })
+api.get("/database", require("./routes/database.routes"));
+api.use("/article", require("./routes/articles.routes"));
+api.use("/search", require("./routes/search.routes"));
+api.use("/token", require("./routes/token.routes"))
+
+
 
 // Version the api
 app.use('/api/v1', api);
