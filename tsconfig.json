@@ -12,6 +12,7 @@
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "sourceMap": true,
+    "allowJs": true,
     "lib": ["ESNext"],
     "strictNullChecks": false
   },
